@@ -1,0 +1,1097 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Syed Imran Shah — AI-Powered HR Professional & Developer</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --bg: #080c10;
+    --bg2: #0d1117;
+    --bg3: #111820;
+    --border: rgba(255,255,255,0.07);
+    --accent: #00e5a0;
+    --accent2: #0070f3;
+    --accent3: #ff6b35;
+    --text: #e8edf3;
+    --muted: #6b7a8d;
+    --card: rgba(255,255,255,0.03);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+    line-height: 1.6;
+  }
+
+  /* Noise overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.3;
+  }
+
+  /* Grid bg */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,229,160,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,229,160,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    background: rgba(8,12,16,0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: 'Space Mono', monospace;
+    font-size: 13px;
+    color: var(--accent);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 13px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-family: 'Space Mono', monospace;
+    transition: color 0.3s;
+  }
+
+  .nav-links a:hover { color: var(--accent); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 120px 40px 80px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .hero-tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .hero-tag::before {
+    content: '';
+    width: 30px;
+    height: 1px;
+    background: var(--accent);
+    display: inline-block;
+  }
+
+  .hero h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(48px, 8vw, 96px);
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -2px;
+    margin-bottom: 8px;
+  }
+
+  .hero h1 span {
+    display: block;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-title {
+    font-family: 'Space Mono', monospace;
+    font-size: clamp(14px, 2vw, 18px);
+    color: var(--muted);
+    margin: 24px 0 40px;
+    letter-spacing: 1px;
+  }
+
+  .hero-desc {
+    font-size: 16px;
+    color: #8a9ab0;
+    max-width: 520px;
+    line-height: 1.8;
+    margin-bottom: 48px;
+  }
+
+  .hero-btns {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: #000;
+    padding: 14px 32px;
+    border: none;
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s;
+    clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 0 100%);
+  }
+
+  .btn-primary:hover {
+    background: #00ffb3;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(0,229,160,0.3);
+  }
+
+  .btn-secondary {
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 14px 32px;
+    background: transparent;
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s;
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    transform: translateY(-2px);
+  }
+
+  /* Floating stats */
+  .hero-stats {
+    position: absolute;
+    right: 60px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .stat-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 20px 24px;
+    text-align: center;
+    min-width: 120px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s;
+  }
+
+  .stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+  }
+
+  .stat-card:hover {
+    border-color: rgba(0,229,160,0.3);
+    transform: translateX(-4px);
+  }
+
+  .stat-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 32px;
+    font-weight: 800;
+    color: var(--accent);
+    display: block;
+  }
+
+  .stat-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+
+  /* SECTION */
+  section {
+    padding: 100px 40px;
+    max-width: 1100px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 60px;
+  }
+
+  .section-num {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 3px;
+  }
+
+  .section-line {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+    max-width: 60px;
+  }
+
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(28px, 4vw, 44px);
+    font-weight: 800;
+    letter-spacing: -1px;
+  }
+
+  /* ABOUT */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: start;
+  }
+
+  .about-text p {
+    color: #8a9ab0;
+    font-size: 15px;
+    line-height: 1.9;
+    margin-bottom: 16px;
+  }
+
+  .about-text p strong {
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  .about-highlights {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .highlight-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 16px 20px;
+    border: 1px solid var(--border);
+    background: var(--card);
+    transition: all 0.3s;
+  }
+
+  .highlight-item:hover {
+    border-color: rgba(0,229,160,0.3);
+    background: rgba(0,229,160,0.03);
+  }
+
+  .hi-icon {
+    font-size: 20px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .hi-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+
+  .hi-val {
+    font-size: 14px;
+    color: var(--text);
+  }
+
+  /* PROJECTS */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .project-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 28px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s;
+    cursor: default;
+  }
+
+  .project-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent), transparent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s;
+  }
+
+  .project-card:hover {
+    border-color: rgba(0,229,160,0.2);
+    transform: translateY(-4px);
+    background: rgba(0,229,160,0.02);
+  }
+
+  .project-card:hover::after { transform: scaleX(1); }
+
+  .project-card.featured {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 24px;
+    align-items: start;
+  }
+
+  .project-num {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+  }
+
+  .project-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    letter-spacing: -0.5px;
+  }
+
+  .project-desc {
+    font-size: 13px;
+    color: #6b7a8d;
+    line-height: 1.7;
+    margin-bottom: 20px;
+  }
+
+  .project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    padding: 4px 10px;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: all 0.3s;
+  }
+
+  .tag:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .project-live {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    color: var(--accent);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    border: 1px solid rgba(0,229,160,0.3);
+    transition: all 0.3s;
+    white-space: nowrap;
+    align-self: start;
+    margin-top: 28px;
+  }
+
+  .project-live:hover {
+    background: rgba(0,229,160,0.1);
+  }
+
+  /* SKILLS */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .skill-group {
+    padding: 28px;
+    border: 1px solid var(--border);
+    background: var(--card);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s;
+  }
+
+  .skill-group:hover {
+    border-color: rgba(0,229,160,0.2);
+    transform: translateY(-3px);
+  }
+
+  .skill-group-title {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .skill-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .skill-item {
+    font-size: 13px;
+    color: #8a9ab0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .skill-item::before {
+    content: '▸';
+    color: var(--accent);
+    font-size: 10px;
+    flex-shrink: 0;
+  }
+
+  /* CONTACT */
+  .contact-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: start;
+  }
+
+  .contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 18px 22px;
+    border: 1px solid var(--border);
+    background: var(--card);
+    text-decoration: none;
+    transition: all 0.3s;
+  }
+
+  .contact-item:hover {
+    border-color: rgba(0,229,160,0.3);
+    transform: translateX(4px);
+  }
+
+  .contact-icon {
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+
+  .contact-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+  }
+
+  .contact-val {
+    font-size: 14px;
+    color: var(--text);
+  }
+
+  /* CV DOWNLOAD */
+  .cv-box {
+    padding: 40px;
+    border: 1px solid rgba(0,229,160,0.2);
+    background: rgba(0,229,160,0.03);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cv-box::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  }
+
+  .cv-box h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 22px;
+    font-weight: 800;
+    margin-bottom: 10px;
+  }
+
+  .cv-box p {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 28px;
+    line-height: 1.6;
+  }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 32px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  footer p {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 1px;
+  }
+
+  footer span {
+    color: var(--accent);
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  .fade-up { animation: fadeUp 0.8s ease forwards; }
+  .delay-1 { animation-delay: 0.1s; opacity: 0; }
+  .delay-2 { animation-delay: 0.2s; opacity: 0; }
+  .delay-3 { animation-delay: 0.3s; opacity: 0; }
+  .delay-4 { animation-delay: 0.4s; opacity: 0; }
+  .delay-5 { animation-delay: 0.5s; opacity: 0; }
+
+  .live-dot {
+    display: inline-block;
+    width: 7px; height: 7px;
+    background: var(--accent);
+    border-radius: 50%;
+    margin-right: 4px;
+    animation: pulse 2s infinite;
+  }
+
+  .cursor {
+    display: inline-block;
+    color: var(--accent);
+    animation: blink 1s infinite;
+    font-weight: 300;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    nav { padding: 16px 20px; }
+    .nav-links { display: none; }
+    .hero { padding: 100px 20px 60px; }
+    .hero-stats { display: none; }
+    section { padding: 60px 20px; }
+    .about-grid, .projects-grid, .skills-grid, .contact-wrapper {
+      grid-template-columns: 1fr;
+    }
+    .project-card.featured {
+      grid-column: 1;
+      grid-template-columns: 1fr;
+    }
+    footer { flex-direction: column; gap: 12px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">SIS.DEV</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-tag fade-up delay-1">
+      <span class="live-dot"></span> Available for freelance work
+    </div>
+    <h1 class="fade-up delay-2">
+      Syed<br/>Imran<br/><span>Shah</span>
+    </h1>
+    <p class="hero-title fade-up delay-3"><span id="typewriter"></span><span class="cursor">|</span></p>
+    <p style="font-family:'Space Mono',monospace; font-size:11px; color:var(--muted); letter-spacing:2px; margin-bottom:24px;" class="fade-up delay-3">MPA (HRM) &nbsp;·&nbsp; 10+ Years HR Experience &nbsp;·&nbsp; Gulf Experience &nbsp;·&nbsp; AI Developer</p>
+    <p class="hero-desc fade-up delay-4">
+      I build intelligent, production-ready AI applications — from shop management systems to multi-agent platforms. Based in Karachi, Pakistan. Shipping real products for real businesses.
+    </p>
+    <div class="hero-btns fade-up delay-5">
+      <a href="#projects" class="btn-primary">View Projects</a>
+      <a href="#contact" class="btn-secondary">Get In Touch</a>
+    </div>
+  </div>
+
+  <div class="hero-stats">
+    <div class="stat-card">
+      <span class="stat-num">8+</span>
+      <span class="stat-label">Projects Built</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-num">5+</span>
+      <span class="stat-label">Tech Stacks</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-num">2+</span>
+      <span class="stat-label">Live Deploys</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-num">10+</span>
+      <span class="stat-label">Years Experience</span>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-header">
+    <span class="section-num">01 — ABOUT</span>
+    <div class="section-line"></div>
+  </div>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>I'm <strong>Syed Imran Shah</strong>, an AI Solutions Developer and Full Stack Engineer based in Karachi, Pakistan. I specialize in building practical, AI-powered systems that solve real business problems.</p>
+      <p>As the owner of <strong>AlSyed Autoparts</strong>, I understand business needs from the inside. This gives me a unique edge — I don't just build software, I build solutions that actually work in the field.</p>
+      <p>I work with <strong>FastAPI, React, Next.js, PostgreSQL</strong>, and integrate cutting-edge AI models (Claude, OpenAI) into production applications. From multi-agent systems to shop management tools — I've shipped them all.</p>
+      <p>Currently pursuing <strong>GIAIC AI & Computing</strong> certification while actively freelancing on Fiverr and building SaaS products for Pakistan's growing small business market.</p>
+    </div>
+    <div class="about-highlights">
+      <div class="highlight-item">
+        <span class="hi-icon">🎓</span>
+        <div>
+          <div class="hi-label">Education</div>
+          <div class="hi-val">MPA (HRM) — University of Karachi<br/>GIAIC AI & Computing (ongoing)</div>
+        </div>
+      </div>
+      <div class="highlight-item">
+        <span class="hi-icon">🏢</span>
+        <div>
+          <div class="hi-label">Business</div>
+          <div class="hi-val">Owner — AlSyed Autoparts<br/>Karachi, Pakistan</div>
+        </div>
+      </div>
+      <div class="highlight-item">
+        <span class="hi-icon">💼</span>
+        <div>
+          <div class="hi-label">Freelance</div>
+          <div class="hi-val">Fiverr: syedio<br/>AI-Powered App Development</div>
+        </div>
+      </div>
+      <div class="highlight-item">
+        <span class="hi-icon">📍</span>
+        <div>
+          <div class="hi-label">Location</div>
+          <div class="hi-val">Karachi, Pakistan<br/>Available Worldwide (Remote)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-header">
+    <span class="section-num">02 — PROJECTS</span>
+    <div class="section-line"></div>
+  </div>
+  <div class="projects-grid">
+
+    <!-- Featured -->
+    <div class="project-card featured">
+      <div>
+        <div class="project-num">01 — FEATURED</div>
+        <div class="project-name">AI-Powered Shop Management System</div>
+        <p class="project-desc">Full-stack inventory & billing system built for AlSyed Autoparts. FastAPI backend deployed on Railway, React/Vite frontend on Vercel. Includes authentication, product management, invoicing, and AI-powered insights.</p>
+        <div class="project-tags">
+          <span class="tag">FastAPI</span>
+          <span class="tag">React</span>
+          <span class="tag">SQLite</span>
+          <span class="tag">Railway</span>
+          <span class="tag">Vercel</span>
+          <span class="tag">Python</span>
+        </div>
+      </div>
+      <a href="https://github.com/Imranshah19" class="project-live" target="_blank">
+        ↗ GitHub
+      </a>
+    </div>
+
+    <div class="project-card">
+      <div class="project-num">02</div>
+      <div class="project-name">AlSyed AI Customer Chatbot</div>
+      <p class="project-desc">Live AI chatbot for auto parts business. Built with Supabase backend, Anthropic Claude API, and Vercel serverless. Handles Toyota, Honda, Suzuki, Mazda parts queries 24/7.</p>
+      <div class="project-tags">
+        <span class="tag">Claude API</span>
+        <span class="tag">Supabase</span>
+        <span class="tag">Vercel</span>
+        <span class="tag">JavaScript</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-num">03</div>
+      <div class="project-name">AI-HRMS (Startup)</div>
+      <p class="project-desc">Enterprise-grade HR Management System with AI attrition prediction, RAG chatbot, FBR payroll, and anomaly detection. 33 DB tables, 137 tests. Built with Next.js 14, FastAPI, PostgreSQL, Redis, Docker.</p>
+      <div class="project-tags">
+        <span class="tag">Next.js 14</span>
+        <span class="tag">FastAPI</span>
+        <span class="tag">PostgreSQL</span>
+        <span class="tag">Redis</span>
+        <span class="tag">Docker</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-num">04</div>
+      <div class="project-name">Personal AI Employee (Hackathon)</div>
+      <p class="project-desc">Multi-agent AI system with Gmail, WhatsApp, Google Calendar integration. Features A2A delegation, MCP servers, and agents for Email, Calendar, Finance, and Social management.</p>
+      <div class="project-tags">
+        <span class="tag">Multi-Agent</span>
+        <span class="tag">MCP</span>
+        <span class="tag">Gmail API</span>
+        <span class="tag">Claude</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-num">05</div>
+      <div class="project-name">AI AutoParts Ecommerce</div>
+      <p class="project-desc">Full ecommerce platform with barcode/price tag scanner, WhatsApp integration, seller dashboard, admin panel, and Claude AI chatbot. Built with Next.js, FastAPI, PostgreSQL.</p>
+      <div class="project-tags">
+        <span class="tag">Next.js</span>
+        <span class="tag">FastAPI</span>
+        <span class="tag">Barcode Scanner</span>
+        <span class="tag">WhatsApp</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-num">06</div>
+      <div class="project-name">School Management System</div>
+      <p class="project-desc">MVP school management system with JWT authentication and WhatsApp/Twilio integration for automated parent-teacher communication. FastAPI + SQLite + vanilla React.</p>
+      <div class="project-tags">
+        <span class="tag">FastAPI</span>
+        <span class="tag">JWT</span>
+        <span class="tag">Twilio</span>
+        <span class="tag">React</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-num">07</div>
+      <div class="project-name">Pharmacy POS System</div>
+      <p class="project-desc">Globally deployable Pharmacy POS & Management System design. SaaS-ready architecture with full inventory, billing, prescription tracking, and reporting modules.</p>
+      <div class="project-tags">
+        <span class="tag">SaaS</span>
+        <span class="tag">FastAPI</span>
+        <span class="tag">React</span>
+        <span class="tag">PostgreSQL</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-num">08</div>
+      <div class="project-name">Humanoid Robotics Textbook (RAG)</div>
+      <p class="project-desc">AI-powered educational platform with Docusaurus frontend, FastAPI backend, RAG chatbot using OpenAI + Qdrant vector DB, and Urdu language translation feature.</p>
+      <div class="project-tags">
+        <span class="tag">RAG</span>
+        <span class="tag">Qdrant</span>
+        <span class="tag">OpenAI</span>
+        <span class="tag">Docusaurus</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-header">
+    <span class="section-num">03 — SKILLS</span>
+    <div class="section-line"></div>
+  </div>
+  <div class="skills-grid">
+    <div class="skill-group">
+      <div class="skill-group-title">Backend</div>
+      <div class="skill-list">
+        <div class="skill-item">FastAPI / Python</div>
+        <div class="skill-item">PostgreSQL / SQLite</div>
+        <div class="skill-item">Redis / Celery</div>
+        <div class="skill-item">REST API Design</div>
+        <div class="skill-item">JWT Authentication</div>
+        <div class="skill-item">Docker</div>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Frontend</div>
+      <div class="skill-list">
+        <div class="skill-item">React.js / Next.js 14</div>
+        <div class="skill-item">Vite / TypeScript</div>
+        <div class="skill-item">Tailwind CSS</div>
+        <div class="skill-item">Responsive Design</div>
+        <div class="skill-item">HTML5 / CSS3</div>
+        <div class="skill-item">JavaScript (ES6+)</div>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">AI & ML</div>
+      <div class="skill-list">
+        <div class="skill-item">Claude API (Anthropic)</div>
+        <div class="skill-item">OpenAI API</div>
+        <div class="skill-item">RAG Systems</div>
+        <div class="skill-item">Multi-Agent AI</div>
+        <div class="skill-item">LLMOps</div>
+        <div class="skill-item">Qdrant Vector DB</div>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Deployment</div>
+      <div class="skill-list">
+        <div class="skill-item">Railway</div>
+        <div class="skill-item">Vercel</div>
+        <div class="skill-item">Render</div>
+        <div class="skill-item">Supabase</div>
+        <div class="skill-item">GitHub Actions</div>
+        <div class="skill-item">Linux / Ubuntu</div>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Integrations</div>
+      <div class="skill-list">
+        <div class="skill-item">WhatsApp / Twilio</div>
+        <div class="skill-item">Gmail MCP</div>
+        <div class="skill-item">Google Calendar API</div>
+        <div class="skill-item">MCP Servers</div>
+        <div class="skill-item">WebSocket</div>
+        <div class="skill-item">Stripe / Payments</div>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Tools & Others</div>
+      <div class="skill-list">
+        <div class="skill-item">Claude Code CLI</div>
+        <div class="skill-item">VS Code</div>
+        <div class="skill-item">Git / GitHub</div>
+        <div class="skill-item">Postman</div>
+        <div class="skill-item">Fiverr Freelancing</div>
+        <div class="skill-item">Business Management</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-header">
+    <span class="section-num">04 — CONTACT</span>
+    <div class="section-line"></div>
+  </div>
+  <div class="contact-wrapper">
+    <div class="contact-info">
+      <p style="color:#6b7a8d; font-size:15px; line-height:1.8; margin-bottom:8px;">
+        Available for freelance projects, collaborations, and consulting. Let's build something intelligent together.
+      </p>
+
+      <a href="https://wa.me/923332455770" class="contact-item" target="_blank">
+        <span class="contact-icon">💬</span>
+        <div>
+          <div class="contact-label">WhatsApp</div>
+          <div class="contact-val">+92 333 2455770</div>
+        </div>
+      </a>
+
+      <a href="https://www.linkedin.com/in/syed-imran-shah-5894882ba" class="contact-item" target="_blank">
+        <span class="contact-icon">💼</span>
+        <div>
+          <div class="contact-label">LinkedIn</div>
+          <div class="contact-val">linkedin.com/in/syed-imran-shah</div>
+        </div>
+      </a>
+
+      <a href="https://fiverr.com/syedio" class="contact-item" target="_blank">
+        <span class="contact-icon">🚀</span>
+        <div>
+          <div class="contact-label">Fiverr</div>
+          <div class="contact-val">fiverr.com/syedio</div>
+        </div>
+      </a>
+
+      <a href="https://github.com/Imranshah19" class="contact-item" target="_blank">
+        <span class="contact-icon">⚙️</span>
+        <div>
+          <div class="contact-label">GitHub</div>
+          <div class="contact-val">github.com/Imranshah19</div>
+        </div>
+      </a>
+
+      <a href="mailto:Syed.Is1990@gmail.com" class="contact-item">
+        <span class="contact-icon">✉️</span>
+        <div>
+          <div class="contact-label">Email</div>
+          <div class="contact-val">Syed.Is1990@gmail.com</div>
+        </div>
+      </a>
+    </div>
+
+    <div class="cv-box">
+      <h3>Download My CV</h3>
+      <p>Get a complete overview of my experience, projects, education, and technical skills in one document.</p>
+      <a href="#" class="btn-primary" style="display:inline-block;" onclick="alert('CV PDF yahan attach karein!')">
+        ↓ &nbsp; Download CV (PDF)
+      </a>
+      <p style="margin-top:20px; font-family:'Space Mono',monospace; font-size:10px; color:var(--muted); letter-spacing:1px;">
+        KARACHI, PAKISTAN &nbsp;·&nbsp; AVAILABLE WORLDWIDE
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 <span>Syed Imran Shah</span> — AI Solutions Developer</p>
+  <p>Built with <span>♥</span> in Karachi, Pakistan</p>
+</footer>
+
+<script>
+  const roles = [
+    "AI Solutions Developer",
+    "HR Professional & AI Expert",
+    "Full Stack Engineer",
+    "Business Owner",
+    "FastAPI + React Expert",
+    "Freelance AI Developer"
+  ];
+
+  let roleIndex = 0;
+  let charIndex = 0;
+  let isDeleting = false;
+  const el = document.getElementById('typewriter');
+
+  function type() {
+    const current = roles[roleIndex];
+    if (isDeleting) {
+      el.textContent = current.substring(0, charIndex - 1);
+      charIndex--;
+    } else {
+      el.textContent = current.substring(0, charIndex + 1);
+      charIndex++;
+    }
+
+    let speed = isDeleting ? 60 : 100;
+
+    if (!isDeleting && charIndex === current.length) {
+      speed = 2000;
+      isDeleting = true;
+    } else if (isDeleting && charIndex === 0) {
+      isDeleting = false;
+      roleIndex = (roleIndex + 1) % roles.length;
+      speed = 400;
+    }
+
+    setTimeout(type, speed);
+  }
+
+  setTimeout(type, 1200);
+</script>
+</body>
+</html>
