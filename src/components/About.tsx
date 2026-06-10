@@ -25,7 +25,7 @@ export default function About() {
           <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-3">
             About Me
           </h2>
-          <div className="w-12 h-1 bg-gradient-to-r from-blue-600 to-blue-400 rounded-full mb-10" />
+          <div className="w-12 h-1 bg-gradient-to-r from-blue-400 to-cyan-300 rounded-full mb-10" />
         </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-12 items-start">
@@ -60,9 +60,9 @@ export default function About() {
             {highlights.map(({ icon: Icon, label, sub }) => (
               <div
                 key={label}
-                className="card-surface rounded-xl border border-border bg-background p-5"
+                className="glass card-surface rounded-2xl p-5"
               >
-                <Icon size={22} className="text-primary mb-3" />
+                <Icon size={22} className="text-blue-400 mb-3" />
                 <p className="font-semibold text-foreground text-sm sm:text-base">
                   {label}
                 </p>

@@ -61,7 +61,7 @@ const skillGroups = [
 
 export default function Skills() {
   return (
-    <section id="skills" className="section-padding bg-slate-100">
+    <section id="skills" className="section-padding bg-background-alt">
       <div className="section-container">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -72,7 +72,7 @@ export default function Skills() {
           <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-3">
             Skills &amp; Tech Stack
           </h2>
-          <div className="w-12 h-1 bg-gradient-to-r from-blue-600 to-blue-400 rounded-full mb-10" />
+          <div className="w-12 h-1 bg-gradient-to-r from-blue-400 to-cyan-300 rounded-full mb-10" />
         </motion.div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -87,12 +87,12 @@ export default function Skills() {
                 delay: i * 0.1,
                 ease: "easeOut" as const,
               }}
-              className="card-surface h-full flex flex-col overflow-hidden rounded-xl border border-border border-t-2 border-t-blue-600 bg-background"
+              className="glass card-surface h-full flex flex-col overflow-hidden rounded-2xl border-t-2 border-t-blue-400"
             >
-              <div className="bg-gradient-to-b from-blue-50 to-white px-6 pt-5 pb-4 border-b border-blue-100">
+              <div className="px-6 pt-5 pb-4 border-b border-white/10">
                 <div className="flex items-center gap-3 mb-1">
-                  <div className="p-2 rounded-lg bg-primary/10">
-                    <Icon size={18} className="text-primary" />
+                  <div className="p-2 rounded-lg bg-gradient-to-br from-blue-500 to-cyan-400 shadow-md shadow-blue-500/20">
+                    <Icon size={18} className="text-white" />
                   </div>
                   <h3 className="font-semibold text-foreground">{title}</h3>
                 </div>
@@ -104,7 +104,7 @@ export default function Skills() {
                 {skills.map((skill) => (
                   <span
                     key={skill}
-                    className="text-xs px-2.5 py-1 rounded-full border border-blue-100 bg-blue-50 text-blue-700"
+                    className="text-xs px-2.5 py-1 rounded-full border border-blue-400/20 bg-blue-500/10 text-blue-300"
                   >
                     {skill}
                   </span>

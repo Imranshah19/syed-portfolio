@@ -12,7 +12,7 @@ const projects = [
     flagship: true,
     description:
       "Full-stack enterprise HRMS covering payroll, attendance, recruitment, performance management, asset tracking, shift scheduling, and global search. Includes MCP server integration and cross-run payroll search.",
-    metric: "98/98 unit tests · 18/18 integration tests",
+    metric: "116 tests passing",
     tech: ["FastAPI", "Next.js 14", "PostgreSQL", "Redis", "Docker", "TypeScript"],
     code: "https://github.com/Imranshah19/nexa-hr",
     demo: null,
@@ -87,7 +87,7 @@ export default function Projects() {
           <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-3">
             Featured Projects
           </h2>
-          <div className="w-12 h-1 bg-gradient-to-r from-blue-600 to-blue-400 rounded-full mb-10" />
+          <div className="w-12 h-1 bg-gradient-to-r from-blue-400 to-cyan-300 rounded-full mb-10" />
         </motion.div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -103,13 +103,11 @@ export default function Projects() {
                 ease: "easeOut" as const,
               }}
               className={cn(
-                "card-surface relative overflow-hidden rounded-xl border bg-background p-6 flex flex-col gap-4",
-                project.flagship
-                  ? "border-primary/40 shadow-sm"
-                  : "border-border"
+                "glass card-surface relative overflow-hidden rounded-2xl p-6 flex flex-col gap-4",
+                project.flagship && "ring-1 ring-blue-400/30"
               )}
             >
-              <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-blue-600 to-blue-400" />
+              <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-blue-400 to-cyan-300" />
 
               {/* Header */}
               <div>
@@ -120,7 +118,7 @@ export default function Projects() {
                         {project.title}
                       </h3>
                       {project.flagship && (
-                        <span className="inline-flex items-center gap-1 text-xs font-medium bg-primary/10 text-primary px-2 py-0.5 rounded-full shrink-0">
+                        <span className="inline-flex items-center gap-1 text-xs font-medium bg-gradient-to-r from-blue-500 to-cyan-400 text-white px-2 py-0.5 rounded-full shrink-0">
                           <Star size={10} />
                           Flagship
                         </span>
@@ -133,7 +131,7 @@ export default function Projects() {
                 </div>
 
                 {project.metric && (
-                  <span className="inline-block text-xs font-medium text-emerald-700 bg-emerald-50 border border-emerald-200 px-2.5 py-0.5 rounded-full mt-2">
+                  <span className="inline-block text-xs font-medium text-emerald-300 bg-emerald-500/10 border border-emerald-400/20 px-2.5 py-0.5 rounded-full mt-2 shadow-[0_0_12px_-2px_rgba(52,211,153,0.4)]">
                     ✓ {project.metric}
                   </span>
                 )}
@@ -149,7 +147,7 @@ export default function Projects() {
                 {project.tech.map((t) => (
                   <span
                     key={t}
-                    className="text-xs px-2 py-0.5 rounded-md border border-blue-100 bg-blue-50 text-blue-700"
+                    className="text-xs px-2 py-0.5 rounded-md border border-blue-400/20 bg-blue-500/10 text-blue-300"
                   >
                     {t}
                   </span>
@@ -157,7 +155,7 @@ export default function Projects() {
               </div>
 
               {/* Links */}
-              <div className="flex gap-2 pt-1 border-t border-border">
+              <div className="flex gap-2 pt-1 border-t border-white/10">
                 <a
                   href={project.code}
                   target="_blank"
@@ -178,7 +176,7 @@ export default function Projects() {
                     className={cn(buttonVariants({ size: "sm" }), "gap-1.5")}
                   >
                     <ExternalLink size={13} />
-                    Demo
+                    Live Demo
                   </a>
                 )}
               </div>

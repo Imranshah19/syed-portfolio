@@ -26,15 +26,17 @@ export default function Navbar() {
 
   return (
     <header
-      className={`sticky top-0 z-50 w-full bg-background transition-shadow duration-300 ${
-        scrolled ? "shadow-sm border-b border-border" : ""
+      className={`sticky top-0 z-50 w-full transition-all duration-300 ${
+        scrolled
+          ? "bg-background/70 backdrop-blur-md border-b border-white/10 shadow-lg shadow-black/20"
+          : "bg-transparent"
       }`}
     >
       <div className="section-container">
         <div className="flex h-16 items-center justify-between">
           <Link
             href="/"
-            className="font-semibold text-lg text-foreground hover:text-primary transition-colors"
+            className="font-display font-semibold text-lg bg-gradient-to-r from-blue-400 to-cyan-300 bg-clip-text text-transparent hover:from-blue-300 hover:to-cyan-200 transition-colors"
           >
             Syed Imran Shah
           </Link>
@@ -44,7 +46,7 @@ export default function Navbar() {
               <a
                 key={link.href}
                 href={link.href}
-                className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                className="text-sm text-muted-foreground hover:text-blue-400 transition-colors"
               >
                 {link.label}
               </a>
@@ -70,13 +72,13 @@ export default function Navbar() {
       </div>
 
       {mobileOpen && (
-        <div className="md:hidden border-t border-border bg-background">
+        <div className="md:hidden border-t border-white/10 bg-background/95 backdrop-blur-md">
           <div className="section-container py-4 flex flex-col gap-4">
             {navLinks.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
-                className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                className="text-sm text-muted-foreground hover:text-blue-400 transition-colors"
                 onClick={() => setMobileOpen(false)}
               >
                 {link.label}

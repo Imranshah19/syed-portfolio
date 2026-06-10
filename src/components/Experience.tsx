@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Briefcase, Building2, Code2 } from "lucide-react";
+import { Briefcase, Building2, Code2, FileText } from "lucide-react";
 
 const experiences = [
   {
@@ -16,7 +16,7 @@ const experiences = [
   },
   {
     icon: Building2,
-    role: "Owner — AlSyed Autoparts",
+    role: "Founder & HR / Operations Lead — AlSyed Autoparts",
     org: "Auto-Parts Business",
     period: "Current",
     current: true,
@@ -34,11 +34,21 @@ const experiences = [
       "Building a suite of production-grade HR technology products: NEXA HR (enterprise HRMS), NEXA HR Agents (10-skill AI agent suite), UAE AgentFactory (labour law compliance), and Smart School Management System (multi-tenant SaaS). All systems are tested, documented, and shipped.",
     tags: ["NEXA HR", "AI Agents", "UAE Labour Law", "FastAPI", "Next.js 14", "LangGraph"],
   },
+  {
+    icon: FileText,
+    role: "Office Administrator & Document Controller",
+    org: "Al-Aren Construction Company — Jeddah, Saudi Arabia",
+    period: "2016 – 2018",
+    current: false,
+    description:
+      "Managed office administration and document control for a construction company; gained Gulf experience in a multicultural environment.",
+    tags: ["Office Admin", "Document Control", "Gulf Experience"],
+  },
 ];
 
 export default function Experience() {
   return (
-    <section id="experience" className="section-padding bg-slate-100">
+    <section id="experience" className="section-padding bg-background-alt">
       <div className="section-container">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -49,7 +59,7 @@ export default function Experience() {
           <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-3">
             Experience
           </h2>
-          <div className="w-12 h-1 bg-gradient-to-r from-blue-600 to-blue-400 rounded-full mb-10" />
+          <div className="w-12 h-1 bg-gradient-to-r from-blue-400 to-cyan-300 rounded-full mb-10" />
         </motion.div>
 
         <div className="relative">
@@ -72,11 +82,11 @@ export default function Experience() {
                   className="sm:pl-16 relative"
                 >
                   {/* Timeline dot */}
-                  <div className="hidden sm:flex absolute left-0 top-5 w-10 h-10 rounded-full border-2 border-primary bg-background items-center justify-center">
-                    <Icon size={16} className="text-primary" />
+                  <div className="hidden sm:flex absolute left-0 top-5 w-10 h-10 rounded-full border-2 border-blue-400 bg-background-alt items-center justify-center shadow-lg shadow-blue-500/20">
+                    <Icon size={16} className="text-blue-400" />
                   </div>
 
-                  <div className="card-surface rounded-xl border border-border border-l-4 border-l-primary bg-background p-6">
+                  <div className="glass card-surface rounded-2xl border-l-4 border-l-blue-400 p-6">
                     <div className="flex flex-wrap items-start justify-between gap-2 mb-3">
                       <div>
                         <h3 className="font-bold text-foreground text-base sm:text-lg">
@@ -87,8 +97,8 @@ export default function Experience() {
                       <span
                         className={`text-xs font-medium px-2.5 py-1 rounded-full shrink-0 ${
                           current
-                            ? "bg-primary/10 text-primary"
-                            : "bg-muted text-muted-foreground border border-border"
+                            ? "bg-blue-500/10 text-blue-300"
+                            : "bg-white/5 text-muted-foreground border border-white/10"
                         }`}
                       >
                         {period}
@@ -101,7 +111,7 @@ export default function Experience() {
                       {tags.map((tag) => (
                         <span
                           key={tag}
-                          className="text-xs px-2 py-0.5 rounded-md border border-blue-100 bg-blue-50 text-blue-700"
+                          className="text-xs px-2 py-0.5 rounded-md border border-blue-400/20 bg-blue-500/10 text-blue-300"
                         >
                           {tag}
                         </span>
