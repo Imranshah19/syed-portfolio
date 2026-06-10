@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { MapPin, ArrowRight, Download } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import Typewriter from "@/components/Typewriter";
 
 function fadeUp(delay: number) {
   return {
@@ -15,8 +16,8 @@ function fadeUp(delay: number) {
 
 export default function Hero() {
   return (
-    <section className="bg-background section-padding">
-      <div className="section-container">
+    <section className="hero-bg section-padding">
+      <div className="section-container relative">
         <div className="max-w-3xl">
           <motion.div
             {...fadeUp(0)}
@@ -35,9 +36,9 @@ export default function Hero() {
 
           <motion.p
             {...fadeUp(0.2)}
-            className="text-xl sm:text-2xl font-medium text-primary mb-4"
+            className="text-xl sm:text-2xl font-medium text-primary mb-4 min-h-[1.75em]"
           >
-            AI-Powered HR Professional — HR-Tech / HRMS Developer
+            <Typewriter />
           </motion.p>
 
           <motion.p

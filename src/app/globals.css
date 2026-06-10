@@ -102,3 +102,55 @@
     @apply py-16 sm:py-20 lg:py-24;
   }
 }
+
+@keyframes cursor-blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+.typewriter-cursor {
+  color: #2563EB;
+  margin-left: 1px;
+  animation: cursor-blink 1s step-end infinite;
+}
+
+.hero-bg {
+  position: relative;
+  background: linear-gradient(to bottom, #FFFFFF 0%, #EFF4FF 100%);
+  overflow: hidden;
+}
+
+.hero-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle at 75% 15%, rgba(37, 99, 235, 0.10), transparent 55%);
+  pointer-events: none;
+}
+
+.hero-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(37, 99, 235, 0.12) 1px, transparent 1px);
+  background-size: 28px 28px;
+  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black, transparent 75%);
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black, transparent 75%);
+  pointer-events: none;
+}
+
+.card-surface {
+  transition: transform 0.3s ease-out, box-shadow 0.3s ease-out, border-color 0.3s ease-out;
+}
+
+.card-surface:hover {
+  transform: translateY(-4px);
+  border-color: #BFDBFE; /* blue-200 */
+  box-shadow: 0 10px 25px -10px rgba(37, 99, 235, 0.18);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card-surface:hover {
+    transform: none;
+  }
+}

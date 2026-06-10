@@ -103,7 +103,7 @@ export default function Projects() {
                 ease: "easeOut" as const,
               }}
               className={cn(
-                "rounded-xl border bg-background p-6 flex flex-col gap-4 hover:shadow-md transition-shadow",
+                "card-surface rounded-xl border bg-background p-6 flex flex-col gap-4",
                 project.flagship
                   ? "border-primary/40 shadow-sm"
                   : "border-border"
@@ -147,7 +147,7 @@ export default function Projects() {
                 {project.tech.map((t) => (
                   <span
                     key={t}
-                    className="text-xs px-2 py-0.5 rounded-md border border-border bg-muted text-muted-foreground"
+                    className="text-xs px-2 py-0.5 rounded-md border border-blue-100 bg-blue-50 text-blue-700"
                   >
                     {t}
                   </span>

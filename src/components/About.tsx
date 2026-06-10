@@ -60,7 +60,7 @@ export default function About() {
             {highlights.map(({ icon: Icon, label, sub }) => (
               <div
                 key={label}
-                className="rounded-xl border border-border bg-background p-5 hover:shadow-md transition-shadow"
+                className="card-surface rounded-xl border border-border bg-background p-5"
               >
                 <Icon size={22} className="text-primary mb-3" />
                 <p className="font-semibold text-foreground text-sm sm:text-base">

@@ -66,7 +66,7 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="bg-background section-padding">
+    <section id="contact" className="section-padding bg-slate-900">
       <div className="section-container">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -74,7 +74,7 @@ export default function Contact() {
           viewport={{ once: true }}
           transition={{ duration: 0.5, ease: "easeOut" as const }}
         >
-          <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-3">
+          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-3">
             Get In Touch
           </h2>
           <div className="w-12 h-1 bg-primary rounded-full mb-10" />
@@ -89,11 +89,11 @@ export default function Contact() {
             transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" as const }}
           >
             {status === "success" ? (
-              <div className="rounded-xl border border-emerald-200 bg-emerald-50 p-8 text-center">
-                <p className="text-lg font-semibold text-emerald-800 mb-2">
+              <div className="rounded-xl border border-emerald-800 bg-emerald-950 p-8 text-center">
+                <p className="text-lg font-semibold text-emerald-300 mb-2">
                   Message sent!
                 </p>
-                <p className="text-sm text-emerald-700">
+                <p className="text-sm text-emerald-400">
                   Thank you for reaching out. I will get back to you shortly.
                 </p>
                 <button
@@ -101,7 +101,7 @@ export default function Contact() {
                     setStatus("idle");
                     setForm({ name: "", email: "", message: "" });
                   }}
-                  className="mt-4 text-sm text-emerald-700 underline underline-offset-2"
+                  className="mt-4 text-sm text-emerald-400 underline underline-offset-2"
                 >
                   Send another message
                 </button>
@@ -111,7 +111,7 @@ export default function Contact() {
                 <div>
                   <label
                     htmlFor="name"
-                    className="block text-sm font-medium text-foreground mb-1.5"
+                    className="block text-sm font-medium text-slate-200 mb-1.5"
                   >
                     Name
                   </label>
@@ -123,13 +123,13 @@ export default function Contact() {
                     value={form.name}
                     onChange={handleChange}
                     placeholder="Your name"
-                    className="w-full rounded-lg border border-border bg-background px-3.5 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring/50 focus:border-primary transition-colors"
+                    className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3.5 py-2.5 text-sm text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-colors"
                   />
                 </div>
                 <div>
                   <label
                     htmlFor="email"
-                    className="block text-sm font-medium text-foreground mb-1.5"
+                    className="block text-sm font-medium text-slate-200 mb-1.5"
                   >
                     Email
                   </label>
@@ -141,13 +141,13 @@ export default function Contact() {
                     value={form.email}
                     onChange={handleChange}
                     placeholder="your@email.com"
-                    className="w-full rounded-lg border border-border bg-background px-3.5 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring/50 focus:border-primary transition-colors"
+                    className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3.5 py-2.5 text-sm text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-colors"
                   />
                 </div>
                 <div>
                   <label
                     htmlFor="message"
-                    className="block text-sm font-medium text-foreground mb-1.5"
+                    className="block text-sm font-medium text-slate-200 mb-1.5"
                   >
                     Message
                   </label>
@@ -159,11 +159,11 @@ export default function Contact() {
                     value={form.message}
                     onChange={handleChange}
                     placeholder="Tell me about your project or opportunity..."
-                    className="w-full rounded-lg border border-border bg-background px-3.5 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring/50 focus:border-primary transition-colors resize-none"
+                    className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3.5 py-2.5 text-sm text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-colors resize-none"
                   />
                 </div>
                 {status === "error" && (
-                  <p className="text-sm text-destructive">
+                  <p className="text-sm text-red-400">
                     Something went wrong. Please try again or email me directly.
                   </p>
                 )}
@@ -189,7 +189,7 @@ export default function Contact() {
             transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" as const }}
             className="space-y-4"
           >
-            <p className="text-muted-foreground leading-relaxed mb-6">
+            <p className="text-slate-300 leading-relaxed mb-6">
               Open to full-time HR-Tech roles in UAE and Germany, freelance
               projects, and collaboration on AI-driven HR systems. Feel free to
               reach out through any channel below.
@@ -200,14 +200,14 @@ export default function Contact() {
                 href={href}
                 target={href.startsWith("mailto") ? undefined : "_blank"}
                 rel="noopener noreferrer"
-                className="flex items-center gap-4 p-4 rounded-xl border border-border bg-background hover:shadow-md hover:border-primary/30 transition-all group"
+                className="flex items-center gap-4 p-4 rounded-xl border border-slate-700 bg-slate-800/50 hover:border-primary/50 hover:bg-slate-800 transition-all group"
               >
-                <div className="p-2.5 rounded-lg bg-primary/10 shrink-0">
-                  <Icon size={18} className="text-primary" />
+                <div className="p-2.5 rounded-lg bg-primary/15 shrink-0">
+                  <Icon size={18} className="text-blue-400" />
                 </div>
                 <div>
-                  <p className="text-xs text-muted-foreground">{label}</p>
-                  <p className="text-sm font-medium text-foreground group-hover:text-primary transition-colors">
+                  <p className="text-xs text-slate-400">{label}</p>
+                  <p className="text-sm font-medium text-white group-hover:text-blue-400 transition-colors">
                     {value}
                   </p>
                 </div>

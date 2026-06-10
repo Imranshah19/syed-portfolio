@@ -87,7 +87,7 @@ export default function Skills() {
                 delay: i * 0.1,
                 ease: "easeOut" as const,
               }}
-              className="rounded-xl border border-border bg-background p-6 hover:shadow-md transition-shadow"
+              className="card-surface rounded-xl border border-border bg-background p-6"
             >
               <div className="flex items-center gap-3 mb-4">
                 <div className="p-2 rounded-lg bg-primary/10">
@@ -99,7 +99,7 @@ export default function Skills() {
                 {skills.map((skill) => (
                   <span
                     key={skill}
-                    className="text-xs px-2.5 py-1 rounded-full border border-border bg-muted text-muted-foreground"
+                    className="text-xs px-2.5 py-1 rounded-full border border-blue-100 bg-blue-50 text-blue-700"
                   >
                     {skill}
                   </span>

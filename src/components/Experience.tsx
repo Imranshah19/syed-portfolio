@@ -80,7 +80,7 @@ export default function Experience() {
                     <Icon size={16} className="text-primary" />
                   </div>
 
-                  <div className="rounded-xl border border-border bg-background p-6 hover:shadow-md transition-shadow">
+                  <div className="card-surface rounded-xl border border-border bg-background p-6">
                     <div className="flex flex-wrap items-start justify-between gap-2 mb-3">
                       <div>
                         <h3 className="font-bold text-foreground text-base sm:text-lg">
