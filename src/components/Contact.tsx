@@ -77,7 +77,7 @@ export default function Contact() {
           <h2 className="text-3xl sm:text-4xl font-bold text-white mb-3">
             Get In Touch
           </h2>
-          <div className="w-12 h-1 bg-primary rounded-full mb-10" />
+          <div className="w-12 h-1 bg-gradient-to-r from-blue-600 to-blue-400 rounded-full mb-10" />
         </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-12">

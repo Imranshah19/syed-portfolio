@@ -87,7 +87,7 @@ export default function Projects() {
           <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-3">
             Featured Projects
           </h2>
-          <div className="w-12 h-1 bg-primary rounded-full mb-10" />
+          <div className="w-12 h-1 bg-gradient-to-r from-blue-600 to-blue-400 rounded-full mb-10" />
         </motion.div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -103,12 +103,14 @@ export default function Projects() {
                 ease: "easeOut" as const,
               }}
               className={cn(
-                "card-surface rounded-xl border bg-background p-6 flex flex-col gap-4",
+                "card-surface relative overflow-hidden rounded-xl border bg-background p-6 flex flex-col gap-4",
                 project.flagship
                   ? "border-primary/40 shadow-sm"
                   : "border-border"
               )}
             >
+              <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-blue-600 to-blue-400" />
+
               {/* Header */}
               <div>
                 <div className="flex items-start gap-2 mb-1">

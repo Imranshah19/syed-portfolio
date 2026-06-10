@@ -7,6 +7,7 @@ const skillGroups = [
   {
     icon: BrainCircuit,
     title: "HR Domain",
+    desc: "Core people-ops expertise",
     skills: [
       "HRMS Design",
       "Payroll",
@@ -23,6 +24,7 @@ const skillGroups = [
   {
     icon: Server,
     title: "Backend & AI",
+    desc: "Systems + AI agents",
     skills: [
       "Python",
       "FastAPI",
@@ -39,6 +41,7 @@ const skillGroups = [
   {
     icon: Monitor,
     title: "Frontend",
+    desc: "Modern web interfaces",
     skills: [
       "Next.js 14",
       "React",
@@ -51,17 +54,14 @@ const skillGroups = [
   {
     icon: Container,
     title: "DevOps",
+    desc: "Ship & deploy",
     skills: ["Docker", "Vercel", "Railway", "GitHub", "CI/CD"],
   },
 ];
 
 export default function Skills() {
   return (
-    <section
-      id="skills"
-      className="section-padding"
-      style={{ backgroundColor: "var(--background-alt)" }}
-    >
+    <section id="skills" className="section-padding bg-slate-100">
       <div className="section-container">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -72,11 +72,11 @@ export default function Skills() {
           <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-3">
             Skills &amp; Tech Stack
           </h2>
-          <div className="w-12 h-1 bg-primary rounded-full mb-10" />
+          <div className="w-12 h-1 bg-gradient-to-r from-blue-600 to-blue-400 rounded-full mb-10" />
         </motion.div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {skillGroups.map(({ icon: Icon, title, skills }, i) => (
+          {skillGroups.map(({ icon: Icon, title, desc, skills }, i) => (
             <motion.div
               key={title}
               initial={{ opacity: 0, y: 20 }}
@@ -87,15 +87,20 @@ export default function Skills() {
                 delay: i * 0.1,
                 ease: "easeOut" as const,
               }}
-              className="card-surface rounded-xl border border-border bg-background p-6"
+              className="card-surface h-full flex flex-col overflow-hidden rounded-xl border border-border border-t-2 border-t-blue-600 bg-background"
             >
-              <div className="flex items-center gap-3 mb-4">
-                <div className="p-2 rounded-lg bg-primary/10">
-                  <Icon size={18} className="text-primary" />
+              <div className="bg-gradient-to-b from-blue-50 to-white px-6 pt-5 pb-4 border-b border-blue-100">
+                <div className="flex items-center gap-3 mb-1">
+                  <div className="p-2 rounded-lg bg-primary/10">
+                    <Icon size={18} className="text-primary" />
+                  </div>
+                  <h3 className="font-semibold text-foreground">{title}</h3>
                 </div>
-                <h3 className="font-semibold text-foreground">{title}</h3>
+                <p className="text-xs text-muted-foreground ml-[calc(2rem+0.75rem)]">
+                  {desc}
+                </p>
               </div>
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-2 content-start p-6 pt-4 flex-1">
                 {skills.map((skill) => (
                   <span
                     key={skill}

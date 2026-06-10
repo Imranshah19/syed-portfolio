@@ -38,11 +38,7 @@ const experiences = [
 
 export default function Experience() {
   return (
-    <section
-      id="experience"
-      className="section-padding"
-      style={{ backgroundColor: "var(--background-alt)" }}
-    >
+    <section id="experience" className="section-padding bg-slate-100">
       <div className="section-container">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -53,7 +49,7 @@ export default function Experience() {
           <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-3">
             Experience
           </h2>
-          <div className="w-12 h-1 bg-primary rounded-full mb-10" />
+          <div className="w-12 h-1 bg-gradient-to-r from-blue-600 to-blue-400 rounded-full mb-10" />
         </motion.div>
 
         <div className="relative">
@@ -80,7 +76,7 @@ export default function Experience() {
                     <Icon size={16} className="text-primary" />
                   </div>
 
-                  <div className="card-surface rounded-xl border border-border bg-background p-6">
+                  <div className="card-surface rounded-xl border border-border border-l-4 border-l-primary bg-background p-6">
                     <div className="flex flex-wrap items-start justify-between gap-2 mb-3">
                       <div>
                         <h3 className="font-bold text-foreground text-base sm:text-lg">
@@ -105,7 +101,7 @@ export default function Experience() {
                       {tags.map((tag) => (
                         <span
                           key={tag}
-                          className="text-xs px-2 py-0.5 rounded-md border border-border bg-muted text-muted-foreground"
+                          className="text-xs px-2 py-0.5 rounded-md border border-blue-100 bg-blue-50 text-blue-700"
                         >
                           {tag}
                         </span>

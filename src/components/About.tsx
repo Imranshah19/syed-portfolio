@@ -25,7 +25,7 @@ export default function About() {
           <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-3">
             About Me
           </h2>
-          <div className="w-12 h-1 bg-primary rounded-full mb-10" />
+          <div className="w-12 h-1 bg-gradient-to-r from-blue-600 to-blue-400 rounded-full mb-10" />
         </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-12 items-start">
