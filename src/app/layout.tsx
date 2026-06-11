@@ -18,40 +18,48 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://syed-imran-shah-portfolio.vercel.app";
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://syed-portfolio-mu.vercel.app";
+
+const title = "Syed Imran Shah | AI-Powered HR Professional & HR-Tech Developer";
+const description =
+  "MHRM + 10 years HR experience + full-stack AI development. Building production-grade HRMS and HR AI agents (NEXA HR). Open to UAE & Germany opportunities.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: "Syed Imran Shah | AI-Powered HR Professional & HR-Tech Developer",
-  description:
-    "MHRM + 10 years HR experience + full-stack AI development. Building production-grade HRMS and HR AI agents. Open to UAE & Germany opportunities.",
+  title,
+  description,
   keywords: [
-    "HR-Tech",
+    "Syed Imran Shah",
+    "HR-Tech Developer",
     "HRMS Developer",
     "AI HR",
+    "HR Professional",
     "FastAPI",
     "Next.js",
     "Karachi",
-    "UAE",
-    "Germany",
-    "LangGraph",
-    "HR AI Agents",
   ],
-  authors: [{ name: "Syed Imran Shah", url: siteUrl }],
+  authors: [{ name: "Syed Imran Shah" }],
   openGraph: {
     type: "website",
     locale: "en_US",
     url: siteUrl,
     siteName: "Syed Imran Shah",
-    title: "Syed Imran Shah | AI-Powered HR Professional & HR-Tech Developer",
-    description:
-      "MHRM + 10 years HR experience + full-stack AI development. Building production-grade HRMS and HR AI agents. Open to UAE & Germany opportunities.",
+    title,
+    description,
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: title,
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Syed Imran Shah | AI-Powered HR Professional & HR-Tech Developer",
-    description:
-      "MHRM + 10 years HR experience + full-stack AI development. Building production-grade HRMS and HR AI agents.",
+    title,
+    description,
+    images: ["/opengraph-image"],
   },
   robots: {
     index: true,
