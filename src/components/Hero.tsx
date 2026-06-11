@@ -102,9 +102,9 @@ export default function Hero() {
                 transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
                 className="relative w-full h-full aspect-square rounded-full p-[3px] bg-gradient-to-br from-blue-500 to-cyan-400 shadow-xl shadow-blue-500/20"
               >
-                <div className="relative w-full h-full rounded-full overflow-hidden bg-transparent">
+                <div className="relative w-full h-full rounded-full overflow-hidden bg-slate-100">
                   <Image
-                    src="/profile.png"
+                    src="/profile.jpg"
                     alt="Syed Imran Shah"
                     fill
                     priority
