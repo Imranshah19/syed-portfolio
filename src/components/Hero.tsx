@@ -100,18 +100,16 @@ export default function Hero() {
               <motion.div
                 animate={reduced ? undefined : { y: [0, -12, 0] }}
                 transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-                className="relative w-full h-full aspect-square rounded-full p-[3px] bg-gradient-to-br from-blue-500 to-cyan-400 shadow-xl shadow-blue-500/20"
+                className="relative w-full h-full aspect-square rounded-full overflow-hidden bg-slate-200 ring-4 ring-blue-400/60 shadow-xl shadow-blue-500/20"
               >
-                <div className="relative w-full h-full rounded-full overflow-hidden bg-slate-100">
-                  <Image
-                    src="/profile.jpg"
-                    alt="Syed Imran Shah"
-                    fill
-                    priority
-                    className="object-cover"
-                    sizes="(max-width: 1024px) 18rem, 20rem"
-                  />
-                </div>
+                <Image
+                  src="/profile.jpg"
+                  alt="Syed Imran Shah"
+                  fill
+                  priority
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 18rem, 20rem"
+                />
               </motion.div>
             </div>
           </motion.div>
