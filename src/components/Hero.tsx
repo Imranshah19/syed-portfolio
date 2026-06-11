@@ -29,7 +29,7 @@ export default function Hero() {
   return (
     <section className="hero-bg section-padding">
       <div className="section-container relative">
-        <div className="grid lg:grid-cols-[1.15fr_1fr] gap-10 lg:gap-16 items-center">
+        <div className="grid lg:grid-cols-[1.15fr_1fr] gap-10 lg:gap-16 items-center lg:items-start">
           <div className="order-2 lg:order-1">
             <motion.div
               {...fadeUp(0)}
@@ -93,9 +93,9 @@ export default function Hero() {
 
           <motion.div
             {...fadeUp(0.15)}
-            className="order-1 lg:order-2 flex justify-center lg:justify-end"
+            className="order-1 lg:order-2 flex justify-center lg:justify-end lg:mt-12"
           >
-            <div className="relative w-56 h-56 sm:w-72 sm:h-72 lg:w-80 lg:h-80 aspect-square">
+            <div className="relative w-56 h-56 sm:w-64 sm:h-64 lg:w-72 lg:h-72 aspect-square max-h-80">
               <div className="absolute -inset-8 rounded-full bg-blue-400/20 blur-3xl" />
               <motion.div
                 animate={reduced ? undefined : { y: [0, -12, 0] }}
