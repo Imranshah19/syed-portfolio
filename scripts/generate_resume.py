@@ -22,14 +22,20 @@ PHOTO_PATH = Path(__file__).resolve().parent / "assets" / "resume_photo.jpg"
 PAGE_W, PAGE_H = letter
 MARGIN_X = 0.65 * 72
 MARGIN_TOP = 0.55 * 72
-MARGIN_BOTTOM = 0.6 * 72
+MARGIN_BOTTOM = 0.35 * 72
 CONTENT_W = PAGE_W - 2 * MARGIN_X
 
 NAVY = HexColor("#1E3A5F")
+NAVY_DARK = HexColor("#13283D")
 SLATE = HexColor("#334155")
 MUTED = HexColor("#64748B")
 ACCENT = HexColor("#2563EB")
+SECTION_BLUE = HexColor("#2B6DA3")
+GOLD = HexColor("#C8A149")
+WHITE = HexColor("#FFFFFF")
 BLACK = HexColor("#111111")
+
+HEADER_BAND_H = 128
 
 FONT_BODY = "Helvetica"
 FONT_BODY_BOLD = "Helvetica-Bold"
@@ -70,19 +76,55 @@ class ResumeDoc:
 
     # -- content primitives -------------------------------------------------
     def section_header(self, title: str):
-        self.ensure_space(22)
-        self.y -= 4
-        self.c.setFont(FONT_BODY_BOLD, 11.5)
-        self.c.setFillColor(NAVY)
-        self.c.drawString(MARGIN_X, self.y, title.upper())
+        bar_h = 14
+        self.ensure_space(bar_h + 10)
         self.y -= 3
-        self.c.setStrokeColor(NAVY)
-        self.c.setLineWidth(1)
-        self.c.line(MARGIN_X, self.y, PAGE_W - MARGIN_X, self.y)
+        bar_top = self.y
+        bar_bottom = bar_top - bar_h
+        self.c.setFillColor(SECTION_BLUE)
+        self.c.rect(0, bar_bottom, PAGE_W, bar_h, stroke=0, fill=1)
+        self.c.setFont(FONT_BODY_BOLD, 10)
+        self.c.setFillColor(WHITE)
+        text_baseline = bar_bottom + (bar_h - 10) / 2 + 1.3
+        self.c.drawString(MARGIN_X, text_baseline, title.upper())
         self.c.setFillColor(BLACK)
-        self.y -= 13
+        self.y = bar_bottom - 7
 
-    def paragraph(self, text: str, font=FONT_BODY, size=9.6, leading=12.4, color=SLATE):
+    def callout_box(self, title_line: str, sub_line: str):
+        pad = 6
+        leading1 = 11
+        leading2 = 12
+        box_h = pad * 2 + leading1 + leading2
+        self.ensure_space(box_h + 6)
+        self.y -= 3
+        box_top = self.y
+        box_bottom = box_top - box_h
+        self.c.setStrokeColor(GOLD)
+        self.c.setLineWidth(1.3)
+        self.c.setFillColor(WHITE)
+        self.c.rect(MARGIN_X, box_bottom, CONTENT_W, box_h, stroke=1, fill=1)
+        self.c.setFont(FONT_BODY_BOLD, 9.4)
+        self.c.setFillColor(NAVY_DARK)
+        ty = box_top - pad - 7.5
+        self.c.drawCentredString(PAGE_W / 2, ty, title_line)
+        ty -= leading2
+        self.c.setFont(FONT_BODY_BOLD, 9.2)
+        self.c.setFillColor(NAVY_DARK)
+        self.c.drawCentredString(PAGE_W / 2, ty, sub_line)
+        self.c.setFillColor(BLACK)
+        self.y = box_bottom - 6
+
+    def draw_triangle_marker(self, x: float, y: float, color, size: float = 4.2):
+        self.c.setFillColor(color)
+        ty = y + 3.4
+        p = self.c.beginPath()
+        p.moveTo(x, ty - size / 2)
+        p.lineTo(x, ty + size / 2)
+        p.lineTo(x + size * 0.9, ty)
+        p.close()
+        self.c.drawPath(p, stroke=0, fill=1)
+
+    def paragraph(self, text: str, font=FONT_BODY, size=9.6, leading=12.0, color=SLATE):
         lines = self.wrap(text, font, size, CONTENT_W)
         self.c.setFont(font, size)
         self.c.setFillColor(color)
@@ -92,7 +134,7 @@ class ResumeDoc:
             self.y -= leading
         self.c.setFillColor(BLACK)
 
-    def bullet(self, text: str, font=FONT_BODY, size=9.4, leading=12.2, indent=14):
+    def bullet(self, text: str, font=FONT_BODY, size=9.4, leading=12.0, indent=14):
         bullet_x = MARGIN_X + indent
         max_width = CONTENT_W - indent
         lines = self.wrap(text, font, size, max_width)
@@ -101,7 +143,8 @@ class ResumeDoc:
         for i, line in enumerate(lines):
             self.ensure_space(leading)
             if i == 0:
-                self.c.drawString(MARGIN_X, self.y, "-")
+                self.draw_triangle_marker(MARGIN_X, self.y, SECTION_BLUE)
+                self.c.setFillColor(SLATE)
             self.c.drawString(bullet_x, self.y, line)
             self.y -= leading
         self.c.setFillColor(BLACK)
@@ -122,7 +165,7 @@ class ResumeDoc:
         self.y -= 12.5
         for b in bullets:
             self.bullet(b)
-        self.y -= 4
+        self.y -= 2
 
     def project_entry(self, title: str, badge: str | None, desc: str, tech: str):
         self.ensure_space(15)
@@ -162,20 +205,21 @@ class ResumeDoc:
         self.c.setFillColor(BLACK)
         self.y -= 11.5
         self.paragraph(detail, size=8.9, leading=11.5, color=MUTED)
-        self.y -= 4
+        self.y -= 2
 
     # -- header with link annotations ---------------------------------------
     def draw_link_segment(self, x: float, y: float, label: str, value: str,
-                           url: str, font=FONT_BODY, size=9) -> float:
+                           url: str, font=FONT_BODY, size=9,
+                           label_color=MUTED, value_color=ACCENT) -> float:
         """Draws 'Label: value' at (x, y), adds a real /Link annotation over
         `value`, returns the x position right after this segment."""
         self.c.setFont(font, size)
-        self.c.setFillColor(MUTED)
+        self.c.setFillColor(label_color)
         self.c.drawString(x, y, f"{label}: ")
         label_w = self.c.stringWidth(f"{label}: ", font, size)
 
         value_x = x + label_w
-        self.c.setFillColor(ACCENT)
+        self.c.setFillColor(value_color)
         self.c.drawString(value_x, y, value)
         value_w = self.c.stringWidth(value, font, size)
 
@@ -185,7 +229,6 @@ class ResumeDoc:
             relative=0,
             thickness=0,
         )
-        self.c.setFillColor(BLACK)
         return value_x + value_w
 
     def draw_photo(self):
@@ -196,64 +239,77 @@ class ResumeDoc:
         photo_w = 0.95 * 72
         photo_h = photo_w * ih / iw
         x = PAGE_W - MARGIN_X - photo_w
-        top_y = PAGE_H - MARGIN_TOP + 12
+        top_y = PAGE_H - 14
         bottom_y = top_y - photo_h
         self.c.drawImage(
             img, x, bottom_y, width=photo_w, height=photo_h,
             preserveAspectRatio=True, mask="auto",
         )
-        self.c.setStrokeColor(MUTED)
-        self.c.setLineWidth(0.6)
+        self.c.setStrokeColor(GOLD)
+        self.c.setLineWidth(1.2)
         self.c.rect(x, bottom_y, photo_w, photo_h, stroke=1, fill=0)
 
     def header(self):
+        band_bottom = PAGE_H - HEADER_BAND_H
+        self.c.setFillColor(NAVY_DARK)
+        self.c.rect(0, band_bottom, PAGE_W, HEADER_BAND_H, stroke=0, fill=1)
+
         self.draw_photo()
+
+        self.y = PAGE_H - 30
         self.c.setFont(FONT_BODY_BOLD, 21)
-        self.c.setFillColor(NAVY)
+        self.c.setFillColor(WHITE)
         self.c.drawString(MARGIN_X, self.y, "SYED IMRAN SHAH")
-        self.y -= 17
+
+        underline_y = self.y - 6
+        self.c.setStrokeColor(GOLD)
+        self.c.setLineWidth(2)
+        self.c.line(MARGIN_X, underline_y, MARGIN_X + 80, underline_y)
+
+        self.y -= 21
         self.c.setFont(FONT_BODY_BOLD, 11.5)
-        self.c.setFillColor(ACCENT)
+        self.c.setFillColor(GOLD)
         self.c.drawString(MARGIN_X, self.y, "AI-Powered HR Professional")
         self.y -= 14
-        self.paragraph(
-            "Human Resource Management  -  HR Technology  -  People Analytics",
-            size=9.4, leading=12, color=MUTED,
-        )
-        self.paragraph(
-            "MHRM  -  10+ Years Experience  -  Gulf Experience  -  Open to relocation: UAE & Germany",
-            size=9.4, leading=12, color=MUTED,
-        )
-        self.y -= 2
+
+        self.c.setFont(FONT_BODY, 9.4)
+        self.c.setFillColor(GOLD)
+        self.c.drawString(MARGIN_X, self.y,
+                           "Human Resource Management  -  HR Technology  -  People Analytics")
+        self.y -= 12
+        self.c.drawString(MARGIN_X, self.y,
+                           "MHRM  -  10+ Years Experience  -  Gulf Experience  -  Open to relocation: UAE & Germany")
+        self.y -= 14
 
         gap = 18
         x = MARGIN_X
         x = self.draw_link_segment(x, self.y, "Phone", "+92-333-2455770",
-                                    "tel:+923332455770")
+                                    "tel:+923332455770", label_color=GOLD, value_color=GOLD)
         x += gap
         x = self.draw_link_segment(x, self.y, "Email", "syed.is1990@gmail.com",
-                                    "mailto:syed.is1990@gmail.com")
+                                    "mailto:syed.is1990@gmail.com", label_color=GOLD, value_color=GOLD)
         x += gap
         x = self.draw_link_segment(x, self.y, "LinkedIn", "in/syed-imran-shah-5894882ba",
-                                    "https://linkedin.com/in/syed-imran-shah-5894882ba")
+                                    "https://linkedin.com/in/syed-imran-shah-5894882ba",
+                                    label_color=GOLD, value_color=GOLD)
         self.y -= 13.5
 
         x = MARGIN_X
         x = self.draw_link_segment(x, self.y, "Portfolio", "syed-portfolio-mu.vercel.app",
-                                    "https://syed-portfolio-mu.vercel.app")
+                                    "https://syed-portfolio-mu.vercel.app", label_color=GOLD, value_color=GOLD)
         x += gap
         x = self.draw_link_segment(x, self.y, "GitHub", "github.com/Imranshah19",
-                                    "https://github.com/Imranshah19")
+                                    "https://github.com/Imranshah19", label_color=GOLD, value_color=GOLD)
         x += gap
         x = self.draw_link_segment(x, self.y, "Fiverr", "fiverr.com/syedio",
-                                    "https://www.fiverr.com/syedio")
+                                    "https://www.fiverr.com/syedio", label_color=GOLD, value_color=GOLD)
         self.y -= 13.5
 
         self.c.setFont(FONT_BODY, 9)
-        self.c.setFillColor(MUTED)
+        self.c.setFillColor(GOLD)
         self.c.drawString(MARGIN_X, self.y, "Location: North Karachi, Pakistan")
         self.c.setFillColor(BLACK)
-        self.y -= 16
+        self.y = band_bottom - 16
 
 
 def build() -> Path:
@@ -273,10 +329,9 @@ def build() -> Path:
         "their people operations."
     )
     doc.y -= 2
-    doc.paragraph(
-        "MY UNIQUE VALUE TO YOUR ORGANIZATION: HR Expertise + Gulf Experience + Real AI Development "
-        "= Future-Ready HR Professional",
-        font=FONT_BODY_BOLD, size=9.4, leading=12.5, color=NAVY,
+    doc.callout_box(
+        "MY UNIQUE VALUE TO YOUR ORGANIZATION",
+        "HR Expertise + Gulf Experience + Real AI Development = Future-Ready HR Professional",
     )
 
     doc.section_header("Key Achievements")
@@ -446,9 +501,9 @@ def build() -> Path:
     doc.paragraph("Available upon request.", size=9.4)
 
     doc.section_header("Personal Details")
-    doc.paragraph("Date of Birth: 16 December 1985        Nationality: Pakistani", size=9.2, leading=12)
-    doc.paragraph("Marital Status: Married        Passport: Available", size=9.2, leading=12)
-    doc.paragraph("Availability: Immediate        CNIC: Available on request", size=9.2, leading=12)
+    doc.paragraph("Date of Birth: 16 December 1985        Nationality: Pakistani", size=9.2, leading=11.5)
+    doc.paragraph("Marital Status: Married        Passport: Available", size=9.2, leading=11.5)
+    doc.paragraph("Availability: Immediate        CNIC: Available on request", size=9.2, leading=11.5)
 
     doc.c.save()
     return OUTPUT_PATH
