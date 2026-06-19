@@ -43,3 +43,6 @@ next-env.d.ts
 # QA / dev artifacts
 qa-screenshots.mjs
 /screenshots
+
+# local resume backup, not needed in repo
+public/resume.pdf.bak
